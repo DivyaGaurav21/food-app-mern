@@ -25,7 +25,7 @@ const foodSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
-      enum: ["veg", "non-veg", "dessert", "beverage", "salad"], // optional but good practice
+      enum: ["veg", "non-veg", "dessert", "beverage", "salad", "rolls" , "healthy" , "dinner"], // optional but good practice
     },
   },
   {

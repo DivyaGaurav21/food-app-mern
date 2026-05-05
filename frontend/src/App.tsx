@@ -5,7 +5,7 @@ import FoodList from './components/FoodList'
 const App = () => {
   return (
     <div>
-      {/* <NavBar/> */}
+      <NavBar/>
       <FoodList/>
     </div>
   )
