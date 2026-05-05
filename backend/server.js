@@ -1,18 +1,27 @@
 import dotenv from "dotenv";
 import express from "express";
+import cors from "cors"; 
 import connectDB from "./config/db.js";
-import router from "./routes/index.js"; // 👈 import main router
+import router from "./routes/index.js";
 
 dotenv.config();
 connectDB();
 
 const app = express();
 
-// ✅ middleware (IMPORTANT)
+// ✅ CORS middleware (MUST be before routes)
+app.use(cors());
+
+// ✅ middleware
 app.use(express.json());
 
-// ✅ use routes
+// ✅ routes
 app.use("/", router);
+
+// optional health route
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
 
 const PORT = process.env.PORT || 5000;
 
