@@ -60,3 +60,64 @@ export const getAllFood = async (req, res) => {
     });
   }
 };
+
+export const getOneFoodPerCategory = async (req, res) => {
+  try {
+    const foods = await FoodList.aggregate([
+      {
+        $group: {
+          _id: "$category",        // group by category
+          item: { $first: "$$ROOT" } // pick first item
+        }
+      },
+      {
+        $replaceRoot: { newRoot: "$item" } // flatten
+      }
+    ]);
+
+    res.status(200).json({
+      success: true,
+      count: foods.length,
+      data: foods,
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
+  }
+};
+
+
+export const getFoodByCategory = async (req, res) => {
+  try {
+    const { category } = req.query;
+
+    // optional: validate category
+    if (!category) {
+      return res.status(400).json({
+        success: false,
+        message: "Category is required",
+      });
+    }
+
+    const foods = await FoodList.find({ category });
+
+    res.status(200).json({
+      success: true,
+      count: foods.length,
+      data: foods,
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
+  }
+};

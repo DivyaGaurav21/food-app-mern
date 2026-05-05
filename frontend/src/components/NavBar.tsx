@@ -15,7 +15,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
+      className={`fixed w-full z-50 transition-all duration-300 px-0 md:px-20 ${
         isScrolled ? "bg-black/80 backdrop-blur-md shadow-md" : "bg-black"
       }`}
     >
@@ -25,7 +25,7 @@ const NavBar = () => {
           <span className="text-orange-500">
             <Apple />
           </span>{" "}
-          FoodKart<span className="text-orange-500">.</span>
+          foodkart<span className="text-orange-500">.</span>
         </h1>
 
         {/* Desktop Menu */}
