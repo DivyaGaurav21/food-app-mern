@@ -1,62 +1,74 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { FoodContext } from "../context/FoodContext";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const FoodList: React.FC = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
   const context = useContext(FoodContext);
 
   if (!context) return <p>Context not found</p>;
 
   const { foodList, loading, error } = context;
 
+  const scrollLeft = () => {
+    scrollRef.current?.scrollBy({
+      left: -300,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollRight = () => {
+    scrollRef.current?.scrollBy({
+      left: 300,
+      behavior: "smooth",
+    });
+  };
+
   if (loading) return <p className="text-center mt-10">Loading...</p>;
   if (error) return <p className="text-center mt-10 text-red-500">{error}</p>;
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-6 text-center">🍔 Food Menu</h2>
+    <div className="relative max-w-6xl m-auto p-4 md:p-12">
+      {/* Header */}
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-extrabold mb-6">
+          🍔 Food <span className="text-orange-600">Cateogary</span>
+        </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="flex gap-2">
+          <button
+            onClick={scrollLeft}
+            className="p-3 rounded-full bg-orange-500 hover:bg-orange-700 text-white cursor-pointer"
+          >
+            <ChevronLeft size={20} />
+          </button>
+
+          <button
+            onClick={scrollRight}
+            className="p-3 rounded-full bg-orange-500 hover:bg-orange-700 text-white cursor-pointer"
+          >
+            <ChevronRight size={20} />
+          </button>
+        </div>
+      </div>
+
+      {/* Categories */}
+      <div
+        ref={scrollRef}
+        className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth"
+      >
         {foodList.map((food) => (
           <div
             key={food._id}
-            className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300"
+            className="shrink-0 flex flex-col items-center cursor-pointer"
           >
-            {/* Image */}
             <img
               src={food.imageUrl}
-              alt={food.name}
-              className="w-full h-40 object-cover"
+              alt={food.category}
+              className="w-32 h-32 rounded-full border-2 border-orange-500 object-cover"
             />
 
-            {/* Content */}
-            <div className="p-4">
-              <h3 className="text-lg font-semibold">{food.name}</h3>
-
-              <p className="text-sm text-gray-500 line-clamp-2">
-                {food.description}
-              </p>
-
-              <div className="flex justify-between items-center mt-3">
-                <span className="text-green-600 font-bold">
-                  ₹{food.price}
-                </span>
-
-                <span
-                  className={`text-xs px-2 py-1 rounded-full ${
-                    food.category === "veg"
-                      ? "bg-green-100 text-green-600"
-                      : "bg-red-100 text-red-600"
-                  }`}
-                >
-                  {food.category}
-                </span>
-              </div>
-
-              {/* Button */}
-              <button className="mt-4 w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition">
-                Add to Cart
-              </button>
-            </div>
+            <p className="mt-2 text-xl font-extrabold text-orange-950 text-shadow-2xs capitalize">{food.category}</p>
           </div>
         ))}
       </div>
