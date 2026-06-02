@@ -3,6 +3,7 @@ import "./Hero.css"
 import burger from "../../assets/burger.png"
 import pizza from "../../assets/pizza.png";
 import thali from "../../assets/thali.png";
+import Stats from "./Stats";
 function Hero() {
   const [visible, setVisible] = useState(false);
 
@@ -54,10 +55,7 @@ function Hero() {
                 s === null ? (
                   <div key={i} className="fh-stat-div" />
                 ) : (
-                  <div key={i} className="fh-stat">
-                    <span className="fh-stat-num">{s.num}</span>
-                    <span className="fh-stat-label">{s.label}</span>
-                  </div>
+                  <Stats key={i} num={s.num} label={s.label} />
                 )
               )}
             </div>
@@ -66,28 +64,25 @@ function Hero() {
           {/* ── RIGHT ── */}
           <div className={`fh-right fu d6 ${visible ? "on" : ""}`}>
 
-            {/* Burger */}
             <div className="food-img-wrap fi-burger">
               <img src={burger} alt="Burger" />
             </div>
-            {/* Floating label tags */}
             <div className="fh-tag fh-tag-1">
-              <span className="tag-dot" /> Crispy Burger
+              <span className="tag-dot fh-dot" /> Crispy Burger
             </div>
-            {/* Burger */}
+           
             <div className="food-img-wrap fi-pizza">
               <img src={pizza} alt="Pizza" />
             </div>
-            {/* Floating label tags */}
             <div className="fh-tag fh-tag-2">
-              <span className="tag-dot" /> Pizza
+              <span className="tag-dot fh-dot" /> Pizza
             </div>
+
             <div className="food-img-wrap fi-thali">
               <img src={thali} alt="Pizza" />
             </div>
-            {/* Floating label tags */}
             <div className="fh-tag fh-tag-3">
-              <span className="tag-dot" /> Dinner Thali
+               <span className="tag-dot fh-dot" /> Dinner Thali
             </div>
           </div>
 

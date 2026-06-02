@@ -1,15 +1,32 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import NavBar from "./components/NavBar";
-import FoodList from "./components/FoodList";
 import Hero from "./components/Hero/Hero";
+import Footer from "./components/Footer";
+
+import Admin from "./admin/Admin";
+import FoodList from "./components/FoodList";
 
 const App = () => {
   return (
-    <div>
+    <BrowserRouter>
       <NavBar />
-      <Hero />
-      {/* <FoodList /> */}
-    </div>
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Hero />
+              <FoodList/>
+              <Footer />
+            </>
+          }
+        />
+        <Route path="/admin" element={<Admin />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

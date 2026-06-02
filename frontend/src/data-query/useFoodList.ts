@@ -14,7 +14,7 @@ export interface FoodItem {
 // 🔹 API call
 const fetchFood = async (): Promise<FoodItem[]> => {
   const res = await fetch(
-    "https://food-app-mern-qzo1.onrender.com/food/foodcategory"
+    "hhttps://food-app-mern-qzo1.onrender.com/api/singleCateogary"
   );
 
   const data = await res.json();

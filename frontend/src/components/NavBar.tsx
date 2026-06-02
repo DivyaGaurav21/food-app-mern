@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { ShoppingCart, Apple } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
+import Logo from "./Logo";
 
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,17 +17,13 @@ const NavBar = () => {
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-300 px-0 md:px-20 ${
-        isScrolled ? "bg-black/80 backdrop-blur-md shadow-md" : "bg-black"
+        isScrolled
+          ? "bg-[var(--black2)] backdrop-blur-md shadow-md"
+          : "bg-[var(--black)]"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <h1 className="text-white text-xl font-bold flex items-center gap-1">
-          <span className="text-orange-500">
-            <Apple />
-          </span>{" "}
-          foodkart<span className="text-orange-500">.</span>
-        </h1>
+       <Logo/>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-8 items-center">

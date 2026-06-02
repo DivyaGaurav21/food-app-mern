@@ -8,6 +8,6 @@ router.get('/', (req, res) => {
     res.send('all ohk :) check API by PostMan');
 })
 
-router.use("/food", foodCategoryRoutes);
+router.use("/api", foodCategoryRoutes);
 
 export default router;

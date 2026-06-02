@@ -1,13 +1,23 @@
 @import "tailwindcss";
- @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
- @import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Manrope:wght@400;500;600&display=swap');
+ /* @import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Manrope:wght@400;500;600&display=swap'); */
 :root {
   --red: oklch(70.5% 0.213 47.604);
-  --red-dark: #d24216;
+  --red-dark: #f13d06;
   --red-glow: rgba(244,67,54,0.45);
   --black: #0a0a0a;
   --black2: #141414;
   --white: #ffffff;
 }
+html, body {
+  font-family: "'Manrope', sans-serif"
+}
 
+.btn{
+  border: 1px solid red;
+  background-color: var(--red);
+  color: white;
+  padding: 6px;
+  font-weight: 700;
+  cursor: pointer;
+}
 
