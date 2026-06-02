@@ -79,7 +79,7 @@ export const getOneFoodPerCategory = async (req, res) => {
   try {
     const foods = await FoodList.aggregate([
       {
-        $sort: { createdAt: -1 },
+        $sort: { createdAt: 1 },
       },
       {
         $group: {
