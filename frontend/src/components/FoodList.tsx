@@ -2,7 +2,7 @@ import React, { useContext, useRef } from "react";
 import { FoodContext } from "../context/FoodContext";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const FoodList: React.FC = () => {
+const FoodList: React.FC = ({ setSelectedCategory }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const context = useContext(FoodContext);
 
@@ -60,6 +60,7 @@ const FoodList: React.FC = () => {
         {foodList.map((food) => (
           <div
             key={food._id}
+            onClick={() => setSelectedCategory(food.category)}
             className="shrink-0 flex flex-col items-center cursor-pointer"
           >
             <img
@@ -68,7 +69,9 @@ const FoodList: React.FC = () => {
               className="w-32 h-32 rounded-full border-2 border-orange-500 object-cover"
             />
 
-            <p className="mt-2 text-xl font-extrabold text-orange-950 text-shadow-2xs capitalize">{food.category}</p>
+            <p className="mt-2 text-xl font-extrabold text-orange-950 text-shadow-2xs capitalize">
+              {food.category}
+            </p>
           </div>
         ))}
       </div>

@@ -6,6 +6,8 @@ export interface FoodItem {
   imageUrl: string;
   price: number;
   description: string;
+  restaurantName:string;
+  deliveryTime:string;
   category: string;
   createdAt: string;
   updatedAt: string;

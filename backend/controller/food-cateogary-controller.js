@@ -137,3 +137,31 @@ export const getFoodByCategory = async (req, res) => {
     });
   }
 };
+
+export const getFoodByRestaurant = async (req, res) => {
+  try {
+    const { restaurantName } = req.query;
+
+    if (!restaurantName) {
+      return res.status(400).json({
+        success: false,
+        message: "Restaurant name is required",
+      });
+    }
+
+    const foods = await FoodList.find({ restaurantName });
+
+    res.status(200).json({
+      success: true,
+      count: foods.length,
+      data: foods,
+    });
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
+  }
+};
