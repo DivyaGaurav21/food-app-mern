@@ -2,7 +2,9 @@ import React, { useContext, useRef } from "react";
 import { FoodContext } from "../context/FoodContext";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const FoodList: React.FC = ({ setSelectedCategory }) => {
+const FoodList: React.FC<{
+  setSelectedCategory: (category: string) => void;
+}> = ({ setSelectedCategory }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const context = useContext(FoodContext);
 
